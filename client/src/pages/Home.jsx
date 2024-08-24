@@ -16,7 +16,7 @@ const Home = () => {
                   <p className='text-white'>shop with us today</p>
                   <ReactTyped className='text-[#ffa45c]' strings={['For Exclusive deal', 'and Enjoy quality products']} typeSpeed={100} backSpeed={20} loop/>
               </div>
-              <Link className='bg-[#ffa45c] text-white  p-3'>SEE Product</Link>
+              <Link className='bg-[#ffa45c] text-white  p-3'>SEE PRODUCT</Link>
             </div>
 
             <div>
@@ -37,7 +37,7 @@ const Home = () => {
             <p className='text-white'>shop with us today</p>
             <ReactTyped className='text-[#ffa45c]' strings={['For Exclusive deal', 'and Enjoy quality products']} typeSpeed={100} backSpeed={20} loop />
           </div>
-          <Link className='bg-[#ffa45c] text-white px-2 py-1'>SEE Product</Link>
+          <Link className='bg-[#ffa45c] text-white px-2 py-1'>SEE PRODUCT</Link>
         </div>
 
         {/* Background Image */}
