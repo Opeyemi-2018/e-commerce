@@ -15,21 +15,20 @@ const Header = ({showNav, setShowNav}) => {
   return (
     <header className="w-full bg-black">
         <div className="flex items-center justify-between max-w-6xl mx-auto p-3">
-            <div className="font-bold text-2xl text-white">XX99</div>
+            <div className="font-bold md:text-2xl text-[20px] text-white">XX99</div>
             
-            <nav className="sm:inline hidden">
-                <ul className=" flex items-center gap-4 font-semibold text-white">
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/product'}>Products</Link>
-                    <Link >New Collection</Link>
-                </ul>
-            </nav>
+            <form className="mx-4 flex-1">
+                <div className="flex items-center">
+                    <input type="text" placeholder="enter product name" className="md:p-2 p-[5px] w-full"/>
+                    <button className="md:p-2 p-[5px] rounded-tr-md rounded-br-md font-semibold bg-[#ffa45c]">Search</button>
+                </div>
+            </form>
             
 
-            <div className="flex items-center sm:gap-6 gap-10">
+            <div className="flex items-center  sm:gap-6 gap-10">
                 {loggedInUser ? (
                     <div className="relative">
-                        <img onClick={()=> setShowPopup(!showPopup)} src={loggedInUser.avatar} alt="" className="w-6 h-6 rounded-full" />
+                        <img onClick={()=> setShowPopup(!showPopup)} src={loggedInUser.avatar} alt="" className="w-6 h-6 object-cover position-center rounded-full" />
                         {showPopup && (
                             <div className="absolute z-40 top-12 w-48  -right-2 rounded-sm p-4 bg-white shadow-lg">
                                <div className="flex flex-col gap-3">
