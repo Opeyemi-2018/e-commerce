@@ -4,12 +4,12 @@ import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 export let signUp = async (req, res, next) => {
-    let {username, email, password, isAdmin, isVendor} = req.body
+    let {username, email, password,  isVendor} = req.body
     if(!username || !email || !password){
         return next(errorHandler(400, 'please provide all required fields'))
     }
     let hashedPassword = bcryptjs.hashSync(password, 10)
-    let newUser = new User ({username, email, password: hashedPassword, isAdmin, isVendor})
+    let newUser = new User ({username, email, password: hashedPassword,  isVendor})
 
     try {
         await newUser.save()
