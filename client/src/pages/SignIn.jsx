@@ -3,6 +3,8 @@ import cartLady from '../assests/cart-lady.jpg'
 import { useDispatch, useSelector } from 'react-redux'
 import {signInStart, signInSuccess, signInFailure} from '../redux/userSlice'
 import { useState } from 'react'
+import { MdErrorOutline } from "react-icons/md";
+import { LiaTimesSolid } from "react-icons/lia";
 
 const SignIn = () => {
   let dispatch = useDispatch()
@@ -59,14 +61,14 @@ const SignIn = () => {
 
           <button disabled={loading} className='bg-[#ffa45c] p-3 rounded-md text-white'>Sign in</button>
         </form>
-        {error && (
-            <p className='flex items-center justify-between bg-red-200 text-red-700 rounded-md p-2'>
+        {/* {error && (
+            <p className='flex items-center justify-between bg-red-200 text-red-700 rounded-md mt-3 p-2'>
               <span className='flex items-center gap-2'>
                 <MdErrorOutline size={20} /> {error}
               </span>
               <LiaTimesSolid size={20} onClick={() => setError(null)} className='text-red-700 cursor-pointer' />
             </p>
-          )}
+          )} */}
         <div className="flex gap-2 mt-5">
             <p>Don't have an account?</p>
             <Link to={'/sign-up'}>

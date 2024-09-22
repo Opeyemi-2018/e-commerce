@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoute from './routes/authRoute.js';
+import productRoute from './routes/productRoute.js'
+import cartRoute from './routes/cartRoute.js';
 
 dotenv.config();
 
@@ -17,13 +19,15 @@ app.use(cookieParser());
 
 mongoose.connect(process.env.mongoUrl)
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(1000, () => {
       console.log('Server is running on port 3000 and connected to MongoDB');
     });
   })
   .catch(err => console.log(err));
 
 app.use('/api/auth', authRoute);
+app.use('/api/product', productRoute)
+app.use('/api/cart', cartRoute)
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
