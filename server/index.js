@@ -11,6 +11,8 @@ import userRoute from "./routes/userRoute.js";
 
 dotenv.config();
 
+let __dirname = path.resolve();
+
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -28,14 +30,13 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-let __dirname = path.resolve();
-
 app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/users", userRoute);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
