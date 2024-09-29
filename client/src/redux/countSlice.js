@@ -1,27 +1,31 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
   quantity: 1,
 };
 
 let countSlice = createSlice({
-  name: 'quantity',
+  name: "quantity",
   initialState,
 
   reducers: {
     decrement: (state) => {
       if (state.quantity === 1) {
-        state.quantity = 1;  // Ensures quantity does not go below 1
+        state.quantity = 1; // Ensures quantity does not go below 1
       } else {
-        state.quantity -= 1;  // Correctly decrements quantity by 1
+        state.quantity -= 1; // Correctly decrements quantity by 1
       }
     },
 
     increment: (state) => {
-      state.quantity += 1;  // Correctly increments quantity by 1
+      state.quantity += 1; // Correctly increments quantity by 1
+    },
+
+    resetQuantity: (state) => {
+      state.quantity = 1;
     },
   },
 });
 
-export let { decrement, increment } = countSlice.actions;
+export let { decrement, increment, resetQuantity } = countSlice.actions;
 export default countSlice.reducer;
