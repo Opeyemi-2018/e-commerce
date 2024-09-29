@@ -5,7 +5,6 @@ import { MdOutlineDone } from "react-icons/md";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoCartOutline } from "react-icons/io5";
 import { FaArrowTrendUp } from "react-icons/fa6";
-// import Cookies from 'js-cookie';
 import CheckOut from "../components/CheckOut";
 import { Link } from "react-router-dom";
 // import { setCartLength } from '../redux/cartLength';
@@ -17,6 +16,7 @@ const Cart = () => {
   const [cart, setCart] = useState({ items: [] });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
   let [deletedmsg, setDeletedMsg] = useState("");
   let dispatch = useDispatch();
 
@@ -46,14 +46,14 @@ const Cart = () => {
           (item) => item.productId && item.productId._id
         );
         setCart({ ...data, items: validItems });
-        // let totalAmount = v
+
+        // total price
         let totalAmount = 0;
-        validItems.map((item) => {
-          totalAmount += item.productId.price;
-          // console.log(item.productId.price);
+        validItems.forEach((item) => {
+          totalAmount += item.productId.price * item.quantity;
         });
         setamountToPay(totalAmount);
-        // console.log(totalAmount);
+        // console.log(typeof totalAmount);
       } catch (err) {
         console.error("Fetch error:", err);
         setError(err.message);
@@ -123,13 +123,15 @@ const Cart = () => {
     <div className="bg-gray-100 min-h-screen">
       <div className="px-3 ">
         <div className="flex md:flex-row  flex-col-reverse gap-4 max-w-6xl mx-auto">
-          <div className="flex-1">
-            <CheckOut
-              amountToPay={amountToPay}
-              user={loggedInUser.email}
-              setamountToPay={setamountToPay}
-            />
-          </div>
+          {cart.items.length > 0 && (
+            <div className="flex-1">
+              <CheckOut
+                amountToPay={amountToPay}
+                user={loggedInUser.email}
+                setamountToPay={setamountToPay}
+              />
+            </div>
+          )}
 
           <div className="md:max-w-2xl flex-1  md:mx-auto">
             <div
@@ -137,62 +139,102 @@ const Cart = () => {
                 cart.items.length === 0 ? "bg-none" : "bg-white shadow-md"
               }  rounded-md p-6 `}
             >
-              <h2 className="font-semibold text-2xl mb-3 capitalize">
+              <h2 className="sm:font-semibold font-normal sm:text-2xl text-1xl mb-3 capitalize">
                 {cart.items.length === 0 ? "" : "summary"}
               </h2>
               {cart.items.length > 0 ? (
                 <div>
-                  {cart.items.map((item) => (
-                    <div
-                      key={item.productId._id}
-                      className="flex border-gray-200 border-b-2 justify-between"
-                    >
-                      <div className="flex gap-6 my-2">
-                        <div className="bg-gray-100 px-3 py-2 rounded-md flex items-center justify-center">
-                          <img
-                            className="w-10 h-10 object-cover"
-                            src={item.productId.imageUrls}
-                            alt=""
-                          />
+                  {cart.items.map((item) => {
+                    let { _id, price, imageUrls, name } = item.productId;
+                    return (
+                      <div
+                        key={_id}
+                        className="flex border-gray-200 border-b-2 justify-between"
+                      >
+                        <div className="flex gap-6 my-2">
+                          <div className="bg-gray-100 px-3 py-2 rounded-md flex items-center justify-center">
+                            <img
+                              className="w-10 h-10 object-cover"
+                              src={imageUrls}
+                              alt=""
+                            />
+                          </div>
+                          <div>
+                            <h1 className="sm:font-semibold font-normal text-1xl">
+                              {name}
+                            </h1>
+                            <h1 className="sm:font-semibold font-normal  text-[13px] text-gray-500">
+                              ${price * item.quantity}
+                            </h1>
+                            <button
+                              onClick={() =>
+                                handleDeleteCart(item.productId._id)
+                              }
+                              className="text-red-700 flex items-center gap-1"
+                            >
+                              <RiDeleteBin6Line size={20} /> remove{" "}
+                            </button>
+                          </div>
                         </div>
                         <div>
-                          <h1 className="font-semibold text-1xl">
-                            {item.productId.name}
+                          <h1 className="text-gray-500 z- font-semibold">
+                            X{item.quantity}
                           </h1>
-                          <h1 className="font-semibold  text-[13px] text-gray-500">
-                            ${item.productId.price}
-                          </h1>
-                          <button
-                            onClick={() => handleDeleteCart(item.productId._id)}
-                            className="text-red-700 flex items-center gap-1"
-                          >
-                            <RiDeleteBin6Line size={20} /> remove{" "}
-                          </button>
                         </div>
                       </div>
-                      <div>
-                        <h1 className="text-gray-500 z- font-semibold">
-                          X{item.quantity}
-                        </h1>
-                      </div>
-                    </div>
-                  ))}
-                  {deletedmsg && (
-                    <p className="flex items-center justify-between bg-red-100 text-red-700 rounded-md p-2">
-                      <span className="flex items-center gap-2">
-                        <MdOutlineDone size={20} /> {deletedmsg}
-                      </span>
-                      <LiaTimesSolid
-                        size={20}
-                        onClick={() => setError(null)}
-                        className="text-red-700 cursor-pointer"
-                      />
-                    </p>
-                  )}
+                    );
+                  })}
+                  {/* div for success message */}
+                  <div className="fixed top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    {deletedmsg && (
+                      <p className="flex items-center justify-between gap-3 text-white bg-green-500 rounded-md px-2 p-1">
+                        <span>
+                          <MdOutlineDone className="bg-white rounded-full p-1 text-3xl text-green-600" />
+                        </span>{" "}
+                        <span>{deletedmsg}</span>
+                      </p>
+                    )}
+                  </div>
                   <div className="flex items-center justify-between">
                     <h1 className="text-gray-600 uppercase">total</h1>
                     <h1 className="font-semibold">${amountToPay}</h1>
                   </div>
+
+                  {/* modal for product deletion */}
+                  {/* {showModal && (
+                    <div className="fixed  max-w-full  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-ld rounded-md bg-red-100 sm:py-8 py-4 sm:px-10">
+                      <div className="">
+                        <span className="flex justify-center items-center sm:text-5xl text-4xl text-red-600">
+                          <PiWarningCircle />
+                        </span>
+                        <h1 className="text-center sm:text-2xl  text-[18px] mb-3">
+                          Are you sure ?
+                        </h1>
+                        <p className="text-center  text-gray-600 sm:text-[17px]  text-[15px] ">
+                          did you really want to delete{" "}
+                          <span className="font-semibold text-black underline ml-1">
+                            {deleteUsername}
+                          </span>
+                          ? this process cannot be undone
+                        </p>
+
+                        <div className="flex gap-8 justify-center mt-6">
+                          <button
+                            onClick={closeModal}
+                            className="bg-white rounded-md sm:py-2 py-0 px-4"
+                          >
+                            cancel
+                          </button>
+                          <button
+                            onClick={handleDelete}
+                            className="bg-red-600 rounded-md sm:py-2 py- px-4 text-white"
+                          >
+                            delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )} */}
                 </div>
               ) : (
                 <div className="flex justify-center items-center flex-col gap-2 mt-20">
@@ -220,3 +262,5 @@ const Cart = () => {
 };
 
 export default Cart;
+
+// i want to add done to deletion of cart item

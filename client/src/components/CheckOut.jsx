@@ -5,7 +5,9 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
   };
   return (
     <div className="bg-white p-6 my-4 rounded-md">
-      <h1 className="font-semibold text-2xl mb-3">CHECKOUT</h1>
+      <h1 className="sm:font-semibold font-normal sm:text-2xl text-1xl mb-3">
+        CHECKOUT
+      </h1>
       <div>
         <form onSubmit={handlePay}>
           <div className="my-4">
@@ -14,7 +16,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
             </h1>
             <div className="grid md:grid-cols-2 gap-2">
               <div className="flex flex-col">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   name
                 </label>
                 <input
@@ -23,7 +25,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   email address
                 </label>
                 <input
@@ -32,7 +34,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   phone number
                 </label>
                 <input
@@ -44,12 +46,12 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
           </div>
 
           <div className="mt-6">
-            <h1 className=" mb-2 uppercase font-bold text-[12px] text-[#ffa45c]">
+            <h1 className=" mb-2 uppercase sm:font-semibold font-normal text-[12px] text-[#ffa45c]">
               shipping info
             </h1>
             <div className="grid md:grid-cols-2 gap-2">
               <div className="flex flex-col col-span-2">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   address
                 </label>
                 <input
@@ -58,7 +60,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   zip code
                 </label>
                 <input
@@ -67,7 +69,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   city
                 </label>
                 <input
@@ -76,7 +78,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="mb-1 text-1xl capitalize font-semibold">
+                <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   country
                 </label>
                 <input

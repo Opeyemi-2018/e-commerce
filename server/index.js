@@ -1,11 +1,13 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import authRoute from './routes/authRoute.js';
-import productRoute from './routes/productRoute.js'
-import cartRoute from './routes/cartRoute.js';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+// import cors from "cors";
+import path from "path";
+import authRoute from "./routes/authRoute.js";
+import productRoute from "./routes/productRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import userRoute from "./routes/userRoute.js";
 
 dotenv.config();
 
@@ -17,21 +19,30 @@ app.use(cookieParser());
 //   credentials: true,
 // }));
 
-mongoose.connect(process.env.mongoUrl)
+mongoose
+  .connect(process.env.mongoUrl)
   .then(() => {
     app.listen(1000, () => {
-      console.log('Server is running on port 3000 and connected to MongoDB');
+      console.log("Server is running on port 3000 and connected to MongoDB");
     });
   })
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
-app.use('/api/auth', authRoute);
-app.use('/api/product', productRoute)
-app.use('/api/cart', cartRoute)
+let __dirname = path.resolve();
+
+app.use("/api/auth", authRoute);
+app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/users", userRoute);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
+  const message = err.message || "Internal Server Error";
   return res.status(statusCode).json({
     success: false,
     statusCode,
