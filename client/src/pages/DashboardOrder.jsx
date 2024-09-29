@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const DashboardOrder = () => {
-  return (
-    <div>DashboardOrder</div>
-  )
-}
+  return <div>DashboardOrders</div>;
+};
 
-export default DashboardOrder
+export default DashboardOrder;
