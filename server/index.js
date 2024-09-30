@@ -21,11 +21,13 @@ app.use(cookieParser());
 //   credentials: true,
 // }));
 
+const PORT = process.env.PORT || 1000;
+
 mongoose
   .connect(process.env.mongoUrl)
   .then(() => {
-    app.listen(1000, () => {
-      console.log("Server is running on port 3000 and connected to MongoDB");
+    app.listen(PORT, () => {
+      console.log(`Server is running on ${PORT} and connected to MongoDB`);
     });
   })
   .catch((err) => console.log(err));
