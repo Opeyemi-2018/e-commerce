@@ -9,7 +9,7 @@ import { BsUsbSymbol } from "react-icons/bs";
 import { BsSmartwatch } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
-import laptop from "../assests/laptop-pic.webp";
+import laptop from "../assets/laptop-pic.webp";
 
 const Home = () => {
   let [products, setProducts] = useState([]);
