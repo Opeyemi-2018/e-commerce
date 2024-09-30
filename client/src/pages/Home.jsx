@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import HeadSet from "../assets/Head-set-2.png";
+// import HeadSet from "../assets/Head-set-2.png";
 import { ReactTyped } from "react-typed";
 import { MdPhoneIphone } from "react-icons/md";
 import { IoGameControllerOutline } from "react-icons/io5";
@@ -107,7 +107,7 @@ const Home = () => {
             </div>
 
             <div>
-              <img src={HeadSet} alt="" className="md:w-full w-40" />
+              {/* <img src={HeadSet} alt="" className="md:w-full w-40" /> */}
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ const Home = () => {
 
           {/* Background Image */}
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <img src={HeadSet} alt="Headset" className=" md:animate-spin" />
+            {/* <img src={HeadSet} alt="Headset" className=" md:animate-spin" /> */}
           </div>
         </div>
       </div>
