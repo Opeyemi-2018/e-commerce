@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import HeadSet from "../assets/Head.png";
+import HeadSet from "../assets/head.png";
 import { ReactTyped } from "react-typed";
 import { MdPhoneIphone } from "react-icons/md";
 import { IoGameControllerOutline } from "react-icons/io5";
