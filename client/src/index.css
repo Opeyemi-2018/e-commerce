@@ -2,3 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* .top-home-div{
+    display: none;
+} */
+
+
+/* @media (min-width: 1024px) {
+    .top-home-div {
+      display: block;
+    }
+  }
+
+
+  .bottom-div {
+    display: inline;
+  } */
+  
+  /* This will hide the element on screens larger than 1024px (desktop screens) */
+  /* @media (min-width: 1024px) {
+    .bottom-div {
+      display: none;
+    }
+  } */
+
+
+  
