@@ -150,7 +150,7 @@ const DashboardCustomers = () => {
       </div>
 
       {showModal && (
-        <div className="fixed md:w-[600px] max-w- w-[300px] mx-4 sm:mx-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md bg-red-100 p-4 sm:py-8 sm:px-10">
+        <div className="fixed md:w-[600px]  w-[350px] mx-4 sm:mx-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md bg-red-100 p-4 sm:py-8 sm:px-10">
           <div className="">
             <span className="flex justify-center items-center sm:text-5xl text-4xl text-red-600">
               <PiWarningCircle />
@@ -169,13 +169,13 @@ const DashboardCustomers = () => {
             <div className="flex gap-8 justify-center mt-6">
               <button
                 onClick={closeModal}
-                className="bg-white rounded-md sm:py-2 py-0 px-4"
+                className="bg-white rounded-md sm:py-2 py-[7px] px-4"
               >
                 cancel
               </button>
               <button
                 onClick={handleDelete}
-                className="bg-red-600 rounded-md sm:py-2 py- px-4 text-white"
+                className="bg-red-600 rounded-md sm:py-2 py-[7px] px-4 text-white"
               >
                 delete
               </button>
