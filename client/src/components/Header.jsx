@@ -120,92 +120,77 @@ const Header = () => {
           XX99
         </Link>
 
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-center bg-white  p-2 rounded-lg"
-        >
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="search..."
-            className="focus:outline-none border-none w-24 sm:w-64"
-          />
-          <button>
-            <IoSearchSharp size={25} className="text-gray-600" />
-          </button>
-        </form>
-
-        {/* <button onClick={()=> setShowSearchInput(!showSearchInput)} className="bg-white p-1 sm:hidden inline rounded-full"><IoSearchSharp size={20}/></button> */}
-        {loggedInUser ? (
-          <div className="relative">
-            <div
-              ref={imageRef}
-              onClick={() => setShowPopup(!showPopup)}
-              className="flex gap-1 items-start text-white cursor-default hover:text-[#ffa45c]"
-            >
-              <FaUserCheck size={20} />
-              <span className=" font-semibold capitalize">
-                Hi, {loggedInUser.username}
-              </span>
-              <IoIosArrowDown
-                className={`font-bold text-2xl transform transition-transform ${
-                  showPopup ? "rotate-180" : ""
-                }`}
-              />
-            </div>
-            {showPopup && (
+        <div className="flex items-center gap-10">
+          {loggedInUser ? (
+            <div className="relative">
               <div
-                ref={popupRef}
-                className="absolute z-40 top-10 w-48  right-1 rounded-sm p-4 bg-white shadow-lg"
+                ref={imageRef}
+                onClick={() => setShowPopup(!showPopup)}
+                className="flex gap-1 items-start text-white cursor-default hover:text-[#ffa45c]"
               >
-                <div className="flex flex-col gap-3">
-                  {loggedInUser.isAdmin ? (
-                    <Link
-                      to={"admin-dashboard?tab=dash-overview"}
-                      className="flex items-center gap-2 text-1xl text-gray-700 hover:font-semibold hover:bg-gray-200 p-1"
-                    >
-                      <MdDashboard size={20} /> <span>Dashboard</span>{" "}
-                    </Link>
-                  ) : (
-                    <Link className="flex items-center text-1xl gap-2 text-gray-700 hover:font-semibold hover:bg-gray-200 p-1">
-                      <CgProfile size={25} /> <span>My Account</span>{" "}
-                    </Link>
-                  )}
-                  <Link className="flex items-center text-1xl gap-2 text-gray-700 hover:font-semibold hover:bg-gray-200 p-1 ">
-                    {" "}
-                    <span>
-                      <TiShoppingBag size={25} />
-                    </span>{" "}
-                    Orders
-                  </Link>
-                  <Link className="flex items-center text-1xl gap-2 text-gray-700 hover:font-semibold hover:bg-gray-200 p-1 ">
-                    <span>
-                      <FaRegHeart size={20} />
-                    </span>
-                    Saved items
-                  </Link>
-                </div>
-                <button
-                  onClick={handleLogOut}
-                  className="text-[#ffa45c] mt-4 font-semibold text-1xl"
-                >
-                  LOGOUT
-                </button>
+                <FaUserCheck size={20} />
+                <span className=" font-semibold capitalize">
+                  Hi, {loggedInUser.username}
+                </span>
+                <IoIosArrowDown
+                  className={`font-bold text-2xl transform transition-transform ${
+                    showPopup ? "rotate-180" : ""
+                  }`}
+                />
               </div>
-            )}
-          </div>
-        ) : (
-          <Link to={"sign-in"} className="bg-white px-2 py-1 rounded-md mb-1">
-            Sign in
+              {showPopup && (
+                <div
+                  ref={popupRef}
+                  className="absolute z-40 top-10 w-48  right-1 rounded-sm p-4 bg-white shadow-lg"
+                >
+                  <div className="flex flex-col gap-3">
+                    {loggedInUser.isAdmin ? (
+                      <Link
+                        to={"admin-dashboard?tab=dash-overview"}
+                        className="flex items-center gap-2 text-1xl text-gray-700 hover:font-semibold hover:bg-gray-200 p-1"
+                      >
+                        <MdDashboard size={20} /> <span>Dashboard</span>{" "}
+                      </Link>
+                    ) : (
+                      <Link className="flex items-center text-1xl gap-2 text-gray-700 hover:font-semibold hover:bg-gray-200 p-1">
+                        <CgProfile size={25} /> <span>My Account</span>{" "}
+                      </Link>
+                    )}
+                    <Link className="flex items-center text-1xl gap-2 text-gray-700 hover:font-semibold hover:bg-gray-200 p-1 ">
+                      {" "}
+                      <span>
+                        <TiShoppingBag size={25} />
+                      </span>{" "}
+                      Orders
+                    </Link>
+                    <Link className="flex items-center text-1xl gap-2 text-gray-700 hover:font-semibold hover:bg-gray-200 p-1 ">
+                      <span>
+                        <FaRegHeart size={20} />
+                      </span>
+                      Saved items
+                    </Link>
+                  </div>
+                  <button
+                    onClick={handleLogOut}
+                    className="text-[#ffa45c] mt-4 font-semibold text-1xl"
+                  >
+                    LOGOUT
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to={"sign-in"} className="bg-white px-2 py-1 rounded-md mb-1">
+              Sign in
+            </Link>
+          )}
+          <Link to={"/cart"} className="relative mr-2">
+            <IoCartOutline size={25} className="text-white" />
+            <div className="w-6 h-6 absolute bottom-3 left-4 bg-white rounded-full p-2 flex items-center justify-center">
+              <p className=" text-black">{cartLength}</p>
+            </div>
           </Link>
-        )}
-        <Link to={"/cart"} className="relative">
-          <IoCartOutline size={25} className="text-white" />
-          <div className="w-6 h-6 absolute bottom-3 left-4 bg-white rounded-full p-2 flex items-center justify-center">
-            <p className=" text-black">{cartLength}</p>
-          </div>
-        </Link>
+        </div>
       </div>
 
       <hr className="mt-2 max-w-6xl mx-auto" />

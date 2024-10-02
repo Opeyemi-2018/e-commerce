@@ -38,7 +38,7 @@ const Dashboard = () => {
 
       <div className="">
         <div
-          className={`fixed z-20 md:inline hidden bg-[#ffa45c] rounded-md  p-4  top-3 bottom-3  left-3 w-60  `}
+          className={`fixed z-20 lg:inline hidden bg-[#ffa45c] rounded-md  p-4  top-3 bottom-3  left-3 w-60  `}
         >
           <Link to={"/"} className="my-4  text-white font-extrabold text-2xl">
             XX99
@@ -94,7 +94,7 @@ const Dashboard = () => {
               <span>
                 <PiUsers size={25} />
               </span>{" "}
-              <h1 className="">Customers</h1>{" "}
+              <h1 className="">Users</h1>{" "}
             </Link>
 
             <Link
@@ -126,7 +126,7 @@ const Dashboard = () => {
       {/* mobile side bar  */}
 
       <div
-        className={`fixed z-20 md:hidden inline bg-[#ffa45c]  rounded-none  px-1 py-3  top-0  bottom-0  left-0 transition-all duration-300 ${
+        className={`fixed z-20 lg:hidden inline bg-[#ffa45c]  rounded-none  px-1 py-3  top-0  bottom-0  left-0 transition-all duration-300 ${
           showSideBar ? "w-52" : "w-10"
         }  `}
       >
@@ -207,9 +207,7 @@ const Dashboard = () => {
             <span>
               <PiUsers size={25} />
             </span>{" "}
-            <h1 className={`${showSideBar ? "inline" : "hidden"} `}>
-              Customers
-            </h1>{" "}
+            <h1 className={`${showSideBar ? "inline" : "hidden"} `}>Users</h1>{" "}
           </Link>
 
           <Link
@@ -244,7 +242,7 @@ const Dashboard = () => {
       </div>
 
       <div
-        className={`md:ml-64 ml-10  overflow-x-auto transition-all duration-300 ${
+        className={`lg:ml-64 ml-10  overflow-x-auto transition-all duration-300 ${
           showSideBar ? "blur-sm md:blur-none" : ""
         }`}
       >

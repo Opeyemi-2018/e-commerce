@@ -4,7 +4,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
     e.preventDefault();
   };
   return (
-    <div className="bg-white p-6 my-4 rounded-md">
+    <div className="bg-white md:p-6 p-2 my-4 rounded-md">
       <h1 className="sm:font-semibold font-normal sm:text-2xl text-1xl mb-3">
         CHECKOUT
       </h1>
@@ -50,7 +50,7 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
               shipping info
             </h1>
             <div className="grid md:grid-cols-2 gap-2">
-              <div className="flex flex-col col-span-2">
+              <div className="flex flex-col md:col-span-2">
                 <label className="mb-1 text-1xl capitalize sm:font-semibold font-normal">
                   address
                 </label>
@@ -91,9 +91,9 @@ const CheckOut = ({ amountToPay, user, setamountToPay }) => {
           {setamountToPay !== 0 && (
             <div className="w-full">
               <PaystackCheckout amount={amountToPay} userEmail={user}>
-                <h1 className="uppercase  text-center  my-4 bg-[#ffa45c] p-2 rounded-sm text-white">
+                <button className="uppercase w-full text-center  my-4 bg-[#ffa45c] p-2 rounded-sm text-white">
                   continue and pay
-                </h1>
+                </button>
               </PaystackCheckout>
             </div>
           )}

@@ -137,7 +137,7 @@ const Cart = () => {
             <div
               className={`my-4 ${
                 cart.items.length === 0 ? "bg-none" : "bg-white shadow-md"
-              }  rounded-md p-6 `}
+              }  rounded-md md:p-6 p-2`}
             >
               <h2 className="sm:font-semibold font-normal sm:text-2xl text-1xl mb-3 capitalize">
                 {cart.items.length === 0 ? "" : "summary"}

@@ -150,7 +150,7 @@ const DashboardCustomers = () => {
       </div>
 
       {showModal && (
-        <div className="fixed md:ml-24 ml-0 max-w-full  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-ld rounded-md bg-red-100 sm:py-8 py-4 sm:px-10">
+        <div className="fixed md:w-[600px] max-w- w-[300px] mx-4 sm:mx-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md bg-red-100 p-4 sm:py-8 sm:px-10">
           <div className="">
             <span className="flex justify-center items-center sm:text-5xl text-4xl text-red-600">
               <PiWarningCircle />

@@ -33,7 +33,7 @@ const Home = () => {
           background: `linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.3) 90%), url(${laptop}) center/cover no-repeat`,
         }}
       >
-        <div className="top-home-div w-full py-6  px-3 md:inline hidden ">
+        <div className="top-home-div w-full py-6  px-3 sm:inline hidden ">
           <div className="max-w-6xl mx-auto flex md:gap-10 gap-2 justify-center ">
             <div className="bg-white md:px-10 px-4 rounded-sm">
               <div className="flex flex-col gap-4 my-4">

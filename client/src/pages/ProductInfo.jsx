@@ -100,7 +100,7 @@ const ProductInfo = () => {
 
   return (
     <div className="px-3 md:my-10 my-4 min-h-screen">
-      <div className="fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
+      <div className="fixed top-[13%] md:right-[6%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
         <IoIosShareAlt
           className="text-slate-500"
           onClick={() => {
@@ -123,7 +123,7 @@ const ProductInfo = () => {
             key={productInfo._id}
             className="flex flex-col items-center text-left md:flex-row gap-4"
           >
-            <div className="flex flex-col w-[500px]">
+            <div className="flex flex-col ">
               {/* Main Image */}
               <img
                 src={mainImage}
