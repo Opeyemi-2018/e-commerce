@@ -19,7 +19,6 @@ const ProductInfo = () => {
   let [copied, setCopied] = useState(false);
 
   const { quantity } = useSelector((state) => state.quantity);
-  console.log(typeof quantity);
 
   const { loggedInUser } = useSelector((state) => state.user) || {}; // Destructure with fallback
 
@@ -51,7 +50,8 @@ const ProductInfo = () => {
 
   const handleAddToCart = async () => {
     if (!productInfo?._id) {
-      alert("Product information is not available. Please try again.");
+      setError("Product information is not available. Please try again.");
+      setTimeout(() => setError(null), 3000);
       return;
     }
 
@@ -123,29 +123,33 @@ const ProductInfo = () => {
             key={productInfo._id}
             className="flex flex-col items-center text-left md:flex-row gap-4"
           >
-            <div className="flex flex-col ">
+            <div className="flex-1 flex flex-col md:gap-0 gap-2">
               {/* Main Image */}
               <img
                 src={mainImage}
                 alt={productInfo.name}
-                className="w-full h-72  object-contain"
+                className="w-full h-80  object-contain"
               />
 
               {/* Thumbnails */}
-              <div className="flex justify-center gap-2">
+              <div className="flex justify-center md:gap-2 gap-4">
                 {productInfo.imageUrls.length > 1 &&
                   productInfo.imageUrls.map((url, index) => (
                     <img
                       key={index}
                       src={url}
                       alt={`Thumbnail ${index}`}
-                      className="w-14 h-14 object-contain cursor-pointer border  border-gray-300 rounded"
+                      className={`${
+                        url === mainImage
+                          ? "border-2 border-[#ffa45c]"
+                          : "border-none"
+                      } w-16 h-16 object-contain cursor-pointer border rounded`}
                       onClick={() => setMainImage(url)}
                     />
                   ))}
               </div>
             </div>
-            <div className="flex flex-col sm:gap-3 gap-1">
+            <div className="flex-1 flex flex-col sm:gap-3 gap-1">
               <h1 className="md:text-3xl sm:font-semibold font-normal text-2xl">
                 {productInfo.name}
               </h1>
@@ -176,7 +180,7 @@ const ProductInfo = () => {
                     <span>
                       <MdOutlineDone className="bg-white rounded-full p-1 text-3xl text-green-600" />
                     </span>{" "}
-                    <span>{successmessage}</span>
+                    <span className="text-nowrap">{successmessage}</span>
                   </p>
                 )}
               </div>
@@ -196,7 +200,9 @@ const ProductInfo = () => {
             </div>
           </div>
         ) : (
-          <div>No product found</div>
+          <div className="items-center justify-center min-h-screen font-bold text-4xl">
+            No product found
+          </div>
         )}
       </div>
     </div>

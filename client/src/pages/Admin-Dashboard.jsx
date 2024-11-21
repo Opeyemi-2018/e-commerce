@@ -55,7 +55,7 @@ const Dashboard = () => {
               <span>
                 <RiDashboardLine size={25} />
               </span>{" "}
-              <h1 className="">Dashboard</h1>
+              <h1 className="">Overview</h1>
             </Link>
             <Link
               onClick={() => setShowSidebar(showSideBar)}

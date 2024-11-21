@@ -44,7 +44,7 @@ export let signIn = async (req, res, next) => {
         isVendor: validUser.isVendor,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "7d" }
+      { expiresIn: "1d" }
     );
     let { password: pass, ...rest } = validUser._doc;
 

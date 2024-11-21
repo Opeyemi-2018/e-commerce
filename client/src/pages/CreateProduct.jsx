@@ -19,13 +19,14 @@ const CreateOrder = () => {
     name: "",
     description: "",
     price: "",
+    category: "",
   });
-  const [imageUploadError, setImageUploadError] = useState(false);
+  const [imageUploadError, setImageUploadError] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   let [successmessage, setSuccessMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
+
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 5) {
       setUploading(true);
@@ -46,10 +47,12 @@ const CreateOrder = () => {
         })
         .catch((err) => {
           setImageUploadError("Image upload failed (4 mb max per image)");
+          setTimeout(() => setImageUploadError(null), 3000);
           setUploading(false);
         });
     } else {
       setImageUploadError("You can only upload 4 images per product");
+      setTimeout(() => setImageUploadError(null), 3000);
       setUploading(false);
     }
   };
@@ -87,17 +90,26 @@ const CreateOrder = () => {
   };
 
   const handleChange = (e) => {
-    const { id, value } = e.target; // get the id and value from the event target
+    const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.imageUrls.length < 1)
+      if (formData.imageUrls.length < 1) {
+        setTimeout(() => setError(null), 3000);
         return setError("You must upload at least one image");
-      if (!formData.name || !formData.description || !formData.price)
+      }
+      if (!formData.name || !formData.description || !formData.price) {
+        setTimeout(() => setError(null), 3000);
         return setError("all fields are required");
+      }
+
+      if (isNaN(formData.price)) {
+        setTimeout(() => setError(null), 3000);
+        return setError("price must be in number");
+      }
       const res = await fetch("/api/product/createproduct", {
         method: "POST",
         headers: {
@@ -159,10 +171,29 @@ const CreateOrder = () => {
           </div>
 
           <div className="flex flex-col flex-1 gap-4">
+            <select
+              id="category"
+              defaultValue=""
+              value={formData.category}
+              onChange={handleChange}
+              className="border border-gray-300 focus:outline-none p-1 font-semibold rounded-md bg-gray-200 text-gray-900"
+            >
+              <option disabled value="">
+                select category
+              </option>
+              <option value="phone">phone</option>
+              <option value="powerbank">powerbank</option>
+              <option value="headset">headset</option>
+              <option value="airbod">airbod</option>
+              <option value="mouse">mouse</option>
+              <option value="speaker">speaker</option>
+              <option value="tripod">tripod</option>
+              <option value="watch">watch</option>
+            </select>
             <p className="font-semibold">
               Images:
               <span className="font-normal text-gray-600 ml-2">
-                The first image will be the main (max 6)
+                The first image will be the main (max 4)
               </span>
             </p>
             <div className="flex gap-4">
@@ -212,7 +243,7 @@ const CreateOrder = () => {
               {loading ? "Creating..." : "Create product"}
             </button>
             {error && (
-              <p className="flex items-center gap-2 text-nowrap text-[15px] bg-red-100 text-red-600 rounded-md p-2">
+              <p className="flex items-center justify-between text-nowrap text-[15px] bg-red-100 text-red-600 rounded-md p-2">
                 <span className="flex items-center gap-2">
                   <MdErrorOutline size={20} /> {error}
                 </span>

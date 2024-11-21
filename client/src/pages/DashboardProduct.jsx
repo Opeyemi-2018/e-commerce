@@ -3,6 +3,7 @@ import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { PiWarningCircle } from "react-icons/pi";
+import { LiaTimesSolid } from "react-icons/lia";
 
 const DashboardProduct = () => {
   let [dashProducts, setDashProducts] = useState([]);
@@ -121,32 +122,37 @@ const DashboardProduct = () => {
 
       {/* div for modal popup */}
       {showModal && (
-        <div className="fixed md:w-[600px] max-w- w-[300px] mx-4 sm:mx-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md bg-red-100 p-4 sm:py-8 sm:px-10">
-          <div className="">
-            <span className="flex justify-center items-center sm:text-5xl text-4xl text-red-600">
+        <div className="fixed md:w-[600px] max-w- w-[300px] mx-4 sm:mx-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg rounded-md bg-[#101010] p-4 sm:py-8 sm:px-10">
+          <div className="relative">
+            <LiaTimesSolid
+              onClick={closeModal}
+              size={25}
+              className="absolute right-4 top-4 text-white"
+            />
+            <span className=" sm:text-5xl text-4xl text-red-600">
               <PiWarningCircle />
             </span>
-            <h1 className="text-center sm:text-2xl text-[18px] mb-3">
+            <h1 className="sm:text-2xl text-[18px] mb-3 text-white">
               Are you sure ?
             </h1>
-            <p className="text-center  text-gray-600 sm:text-[17px] text-[15px] ">
+            <p className="text-gray-400 sm:text-[17px] text-[15px] ">
               did you really want to delete{" "}
-              <span className="font-semibold text-black underline ml-1">
+              <span className="font-semibold text-white underline ml-1">
                 {deleteProductName}
               </span>
               ? process cannot be undone
             </p>
 
-            <div className="flex gap-8 justify-center mt-6">
+            <div className="flex gap-8  mt-6">
               <button
                 onClick={closeModal}
-                className="bg-white rounded-md sm:py-2 py-0 px-4"
+                className="bg-white w-32 rounded-md sm:py-2 py-0 px-4"
               >
                 cancel
               </button>
               <button
                 onClick={handleDelete}
-                className="bg-red-600 rounded-md sm:py-2 py- px-4 text-white"
+                className="bg-red-600 w-32 rounded-md sm:py-2 py- px-4 text-white"
               >
                 delete
               </button>
