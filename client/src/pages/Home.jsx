@@ -112,12 +112,12 @@ const Home = () => {
             </div>
 
             {/* Background Image */}
-            <div className="absolute inset-0 flex items-center justify-center z-10">
+            <div className="absolute inset-0 flex items-center justify-center ">
               <img src={HeadSet} alt="Headset" className=" " />
             </div>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto pt-3 pb-2 px-3">
+        <div className="max-w-6xl z-40 mx-auto sm:pt-3 pt-5 pb-2 px-3">
           <form>
             <input
               type="text"
@@ -137,13 +137,11 @@ const Home = () => {
           className="max-w-6xl grid md:grid-cols-6 grid-cols-2 mx-auto gap-4"
         >
           {filteredProduct.map((product) => {
-            // Destructure 'name', 'imageUrls', and '_id' from the 'product' object
             let { name, imageUrls, price, _id } = product;
 
             return (
               <Link to={`/product/${_id}`} key={_id}>
                 {" "}
-                {/* Corrected the Link path */}
                 <div className="bg-white shadow-sm hover:shadow-md rounded-sm overflow-hidden flex flex-col">
                   <div className="relative w-full h-32 flex items-center justify-center">
                     <img

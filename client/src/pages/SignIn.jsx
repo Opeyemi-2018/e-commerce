@@ -15,7 +15,10 @@ const SignIn = () => {
   let handleChange = (e) => {
     e.preventDefault();
     let { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    const formattedValue =
+      id === "email" || id === "name" ? value.toLowerCase() : value;
+
+    setFormData({ ...formData, [id]: formattedValue });
     console.log(formData);
   };
 

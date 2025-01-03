@@ -97,13 +97,13 @@ const Cart = () => {
   if (!loggedInUser) {
     return (
       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-        <div className="bg-white max-w-4xl mx-auto  gap-4 p-3 flex items-center mt-24">
-          You need to be logged in to see your cart.
+        <div className="bg-white max-w-4xl mx-auto  gap-3 p-3 flex flex-col items-center mt-24">
+          <p> You need to be sign in to see your cart.</p>{" "}
           <Link
             to={"/sign-in"}
-            className="text-[#ffa45c] flex items-center gap-2"
+            className="bg-[#ffa45c] p-3 text-white rounded-md flex items-center gap-2"
           >
-            sign in <FaArrowTrendUp className="text-[#ffa456]" />
+            sign in <FaArrowTrendUp className="text-white" />
           </Link>
         </div>
         ;
